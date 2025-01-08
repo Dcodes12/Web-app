@@ -14,9 +14,17 @@ router.get('/', function (req, res, next) {
             res.json(err)
             next(err)
         }
-        else {
-            res.json(result)
-        }
+        let html = '<link rel="stylesheet" href="/main.css">';
+        html += '<ul class="products-list">';
+        result.forEach(player => {
+            html += `<li> ${player.FirstName} - ${player.LastName} - ${player.Age} -`
+            html += `${player.Height} - ${player.Weight} - ${player.Country} - ${player.Ranking} -`
+            html += `${player.Handedness}`
+        })
+        html += '</ul>';
+        // Set content type to HTML and send response
+        res.setHeader('Content-Type', 'text/html');
+        res.send(html);
     })
 })
 
