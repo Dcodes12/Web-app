@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Add book to <%=shopData.shopName%></title>
+    <link rel="stylesheet"  type="text/css" href="/main.css" />
+  </head>
+  <body>
+    <h1><%=shopData.shopName%>: Add Tennis Player</h1>
+    <form method="POST" action="playeradded">
+      <p>First Name: <input id="firstName" type="text" name="firstName" required /></p>
+      <p>Last Name: <input id="lastName" type="text" name="lastName" required /></p>
+      <p>Age: <input id="age" type="number" name="age" min="0" required /></p>
+      <p>Height (cm): <input id="height" type="number" step="0.01" name="height" min="0" required /></p>
+      <p>Weight (kg): <input id="weight" type="number" step="0.01" name="weight" min="0" required /></p>
+      <p>Country: <input id="country" type="text" name="country" required /></p>
+      <p>Ranking: <input id="ranking" type="number" name="ranking" min="1" required /></p>
+      <p>Handedness: 
+        <select id="handedness" name="handedness">
+          <option value="Right">Right</option>
+          <option value="Left">Left</option>
+          <option value="Ambidextrous">Ambidextrous</option>
+        </select>
+      </p>
+      <input type="submit" value="Add Player" />
+    </form>
+  </body>
+</html>
+

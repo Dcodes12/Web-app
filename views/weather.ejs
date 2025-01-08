@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Weather Search</title>
+    <link rel="stylesheet"  type="text/css" href="/main.css" />
+  </head>
+  <body>
+    <h1>
+        Check the Weather in your city using: <%=shopData.shopName%>
+    </h1>
+    <form action="/city_weather" method="get">
+        <label for="city">Enter a city name:</label>
+        <input type="text" id="city" name="city" required>
+        <button type="submit">Get Weather</button>
+    </form>
+  </body>
+  </html>

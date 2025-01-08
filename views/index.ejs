@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Welcome to <%=shopData.shopName%></title>
+    <link rel="stylesheet"  type="text/css" href="/main.css" />
+  </head>
+  <body>
+    <h1>Welcome to <%=shopData.shopName%></h1>
+    <p><a href="../about">About <%=shopData.shopName%> + Controls for the tennis game below</a></p>
+    <p><a href="../weather">Check the current weather forecast</a></p>
+    <p><a href="../players/search">Search for a player</a></p>
+    <p><a href="../players/addplayer">Add a new player to the database</a></p>
+    <p><a href="../players/list">List all the current players on the database</a></p>
+    <p><a href="../users/list">List users</a></p>
+    <p><a href="../players/youngplayers">Get the names of some new talent</a></p>
+    <p><a href="../users/register">Register with us</a></p>
+    <p><a href="../users/login">Login to your account</a></p>
+    <p><a href="../users/login">Logout</a></p>
+  
+    <style>
+      body {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        }
+    </style>
+    
+    <canvas id="gameCanvas" width="800" height="400"></canvas>
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        // Game constants
+        const paddleWidth = 10;
+        const paddleHeight = 80;
+        const ballSize = 10;
+        const canvasWidth = canvas.width;
+        const canvasHeight = canvas.height;
+        // Paddles
+        const leftPaddle = { x: 0, y: canvasHeight / 2 - paddleHeight / 2, dy: 0 };
+        const rightPaddle = { x: canvasWidth - paddleWidth, y: canvasHeight / 2 - paddleHeight / 2, dy: 0 };
+        // Ball
+        const ball = {
+            x: canvasWidth / 2,
+            y: canvasHeight / 2,
+            dx: 4 * (Math.random() > 0.5 ? 1 : -1),
+            dy: 4 * (Math.random() > 0.5 ? 1 : -1),
+        };
+
+        // Player controls
+        const keys = {};
+        // Key bindings
+        document.addEventListener('keydown', (e) => keys[e.key] = true);
+        document.addEventListener('keyup', (e) => keys[e.key] = false);
+        // Update positions
+        function update() {
+            // Move paddles
+            if (keys['w'] && leftPaddle.y > 0) leftPaddle.dy = -6;
+            else if (keys['s'] && leftPaddle.y < canvasHeight - paddleHeight) leftPaddle.dy = 6;
+            else leftPaddle.dy = 0;
+
+            if (keys['ArrowUp'] && rightPaddle.y > 0) rightPaddle.dy = -6;
+            else if (keys['ArrowDown'] && rightPaddle.y < canvasHeight - paddleHeight) rightPaddle.dy = 6;
+            else rightPaddle.dy = 0;
+
+            leftPaddle.y += leftPaddle.dy;
+            rightPaddle.y += rightPaddle.dy;
+            // Move ball
+            ball.x += ball.dx;
+            ball.y += ball.dy;
+            // Ball collision with top and bottom walls
+            if (ball.y <= 0 || ball.y >= canvasHeight - ballSize) {
+                ball.dy *= -1;
+            }
+            // Ball collision with paddles
+            if (
+                ball.x <= leftPaddle.x + paddleWidth &&
+                ball.y >= leftPaddle.y &&
+                ball.y <= leftPaddle.y + paddleHeight
+            ) {
+                ball.dx *= -1;
+            }
+            if (
+                ball.x >= rightPaddle.x - ballSize &&
+                ball.y >= rightPaddle.y &&
+                ball.y <= rightPaddle.y + paddleHeight
+            ) {
+                ball.dx *= -1;
+            }
+            // Reset ball if it goes out of bounds
+            if (ball.x <= 0 || ball.x >= canvasWidth) {
+                ball.x = canvasWidth / 2;
+                ball.y = canvasHeight / 2;
+                ball.dx *= -1;
+                ball.dy = 4 * (Math.random() > 0.5 ? 1 : -1);
+            }
+        }
+        // Draw the game elements
+        function draw() {
+            ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+
+            // Draw paddles
+            ctx.fillStyle = 'white';
+            ctx.fillRect(leftPaddle.x, leftPaddle.y, paddleWidth, paddleHeight);
+            ctx.fillRect(rightPaddle.x, rightPaddle.y, paddleWidth, paddleHeight);
+
+            // Draw ball
+            ctx.fillRect(ball.x, ball.y, ballSize, ballSize);
+
+            // Draw center line
+            ctx.beginPath();
+            ctx.setLineDash([5, 15]);
+            ctx.moveTo(canvasWidth / 2, 0);
+            ctx.lineTo(canvasWidth / 2, canvasHeight);
+            ctx.strokeStyle = 'white';
+            ctx.stroke();
+        }
+        // Game loop
+        function gameLoop() {
+            update();
+            draw();
+            requestAnimationFrame(gameLoop);
+        }
+        gameLoop();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,98 @@
+body {
+  background-image: url('https://media.tenor.com/9SdVSh6Z1ykAAAAM/tennis-ball-spinning.gif');
+  background-size: 1920px 1080px;}
+canvas {
+  border: 20px solid blue;
+  background-color: black;
+  margin-top: 20px;
+}
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color: darkcyan;
+    text-align: center;
+}
+
+h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color: cadetblue;
+    text-align: center;
+}
+
+p,li,label {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+a:link {
+    color: orangered;
+    text-decoration: none;
+    padding:5px;
+  }
+  
+  /* visited link */
+  a:visited {
+    color: tomato;
+    text-decoration: none;
+    padding:5px;
+  }
+  
+  /* mouse over link */
+  a:hover {
+    color: white;
+    text-decoration: none;
+    background-color: orangered;
+    padding:5px;
+  }
+  
+  /* selected link */
+  a:active {
+    color: blue;
+    text-decoration: none;
+    padding:5px;
+  }
+form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: auto;
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+input[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+input[type="submit"]:hover {
+    background-color: #218838;
+}
+button {
+  background-color: #28a745;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  align-items: center;
+}
+button:hover {
+  background-color: #218838;
+}
+text{
+  color: orangered;
+}

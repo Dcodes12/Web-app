@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Welcome to <%=shopData.shopName%></title>
+    <link rel="stylesheet"  type="text/css" href="/main.css" />
+  </head>
+  <body>
+    <h1><%=shopData.shopName%> Shop</h1>
+    <text>
+    <ul>
+      <% availablePlayers.forEach(function(player) { %>
+        <li>
+          <h2>Player Information</h2>
+          <%= player.FirstName %> <%= player.LastName %> 
+          - Age: <%= player.Age %>
+          - Height: <%= player.Height %>cm
+          - Weight: <%= player.Weight %>kg
+          - Country: <%= player.Country %>
+          - Handedness: <%= player.Handedness %>
+          <h2>Player Statistics</h2>
+          Player ID: <%= player.PlayerID %>
+          - Matches Played: <%= player.MatchesPlayed %>
+          - Matches Won: <%= player.MatchesWon %>
+          - Aces: <%= player.Aces %>
+          - Double Faults: <%= player.DoubleFaults %>
+          - Break Points Saved: <%= player.BreakPointsSaved %>
+        </li>
+      <% }) %>
+    </ul>
+  </text>
+  </body>
+</html>
